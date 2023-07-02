@@ -53,7 +53,6 @@ app.get("/movies/", async (request, response) => {
   const getMovieNamesQuery = `
     select *
     from movie
-    order by movie_name;
     `;
   const movieNamesArray = await db.all(getMovieNamesQuery);
   response.send(
@@ -102,7 +101,7 @@ app.put("/movies/:movieId/", async (request, response) => {
     movie_id=${movieId};
     `;
   await db.run(updateMovieQuery);
-  response.send("Book Updated Successfully");
+  response.send("Movie Details Updated");
 });
 
 //delete movie API
@@ -143,3 +142,4 @@ app.get("/directors/:directorId/movies/", async (request, response) => {
     movieNames.map((eachMovie) => convertDbObjectToResponseObject(eachMovie))
   );
 });
+module.exports=app;
